@@ -4,7 +4,7 @@
 
 # Intermediate Coverage file
 .coverage
-
+venv/
 # Output files
 *.png
 
