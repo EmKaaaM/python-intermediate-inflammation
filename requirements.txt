@@ -10,7 +10,6 @@ exceptiongroup==1.0.0
 executing==1.2.0
 fonttools==4.38.0
 iniconfig==1.1.1
-ipython==8.6.0
 jedi==0.18.1
 kiwisolver==1.4.4
 matplotlib==3.6.1
