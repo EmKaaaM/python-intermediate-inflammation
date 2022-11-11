@@ -1,9 +1,10 @@
 from inflammation import models
 import json
 from inflammation import models
+from abc import ABC, abstractmethod
 
 
-class Serializer:
+class Serializer(ABC):
     @classmethod
     def serialize(cls, instances):
         raise NotImplementedError
@@ -19,6 +20,8 @@ class Serializer:
     @classmethod
     def load(cls, path):
         raise NotImplementedError
+    
+    pass
 
 
 class ObservationSerializer(Serializer):
@@ -37,20 +40,25 @@ class ObservationSerializer(Serializer):
 
 
 
-class PatientSerializer:
+class PatientSerializer(Serializer):
     model = models.Patient
 
     @classmethod
     def serialize(cls, instances):
         return [{
             'name': instance.name,
-            'observations': instance.observations,
+            'observations': ObservationSerializer.serialize(instance.observations),
         } for instance in instances]
 
     @classmethod
     def deserialize(cls, data):
-        return [cls.model(**d) for d in data]
+        instances = []
 
+        for item in data:
+            item['observations'] = ObservationSerializer.deserialize(item.pop('observations'))
+            instances.append(cls.model(**item))
+
+        return instances
 
 class PatientJSONSerializer(PatientSerializer):
     @classmethod
