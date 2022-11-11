@@ -38,9 +38,11 @@ The following optional packages are required to run Inflam's unit tests:
 
 
 ## Usage
+
 - After following the installation instructions run ``python3 inflammation-analysis.py data/inflammation-01.csv``
 - A GUI should pop up displaying different data.
 - If using WSL2 you might need to run X11-forward and XLaunch server to see GUI
+
 ## Contributing
 
 - Create an issue [here](https://github.com/EmKaaaM/python-intermediate-inflammation/issues)
